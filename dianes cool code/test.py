@@ -1,1 +1,0 @@
-print("im a very cool woman from Kannelmäki")
