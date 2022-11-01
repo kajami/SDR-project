@@ -1,0 +1,5 @@
+matplotlib==3.6.1
+numpy==1.17.4
+scipy==1.9.3
+SimpleSoapy==1.5.1
+sounddevice==0.4.5
