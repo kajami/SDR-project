@@ -4,3 +4,4 @@
 | pyrtlsdr                      | https://github.com/pyrtlsdr/pyrtlsdr          | 548          |  ?           | ?         | Can create samples from SDR data. Does it work only with rtl-sdr?
 | QSpectrumAnalyzer             | https://pypi.org/project/QSpectrumAnalyzer/   |              |  ?           | yes       | Can create waterfall from SDR signal. Requires other libraries (PyQt4 / PyQt5 / PySide / PySide2, Qt.py (https://github.com/mottosso/Qt.py), PyQtGraph (http://www.pyqtgraph.org), soapy_power (https://github.com/xmikos/soapy_power),Optional: rx_tools / rtl-sdr / rtl_power_fftw / hackrf)
 |pyhackrf                       | https://github.com/dressel/pyhackrf           | 40           | Yes          | ?        | A Python wrappper for libhackrf. Haven't been updated for a while
+ PLSDR                          | https://github.com/lutusp/PLSDR               | 149          | ?            | Yes       | SDR application written with python.     
