@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: basic
+# Title: Top Block
 # GNU Radio version: 3.10.1.1
 
 from gnuradio import audio
@@ -22,28 +22,47 @@ from gnuradio import eng_notation
 
 
 
-class untitled(gr.top_block):
+class top_block(gr.top_block):
 
-    def __init__(self, samp_rate=48000):
-        gr.top_block.__init__(self, "basic", catch_exceptions=True)
+    def __init__(self, filepath='enter here /filepath/filename.wav'):
+        gr.top_block.__init__(self, "Top Block", catch_exceptions=True)
 
         ##################################################
         # Parameters
         ##################################################
-        self.samp_rate = samp_rate
+        self.filepath = filepath
+
+        ##################################################
+        # Variables
+        ##################################################
+        self.samp_rate = samp_rate = 44100
 
         ##################################################
         # Blocks
         ##################################################
-        self.blocks_wavfile_source_0 = blocks.wavfile_source('/home/minamina/test.wav', False)
-        self.audio_sink_0 = audio.sink(44100, '', True)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink(
+            filepath,
+            1,
+            samp_rate,
+            blocks.FORMAT_WAV,
+            blocks.FORMAT_PCM_16,
+            False
+            )
+        self.audio_source_0 = audio.source(samp_rate, '', True)
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_wavfile_source_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.audio_source_0, 0), (self.blocks_wavfile_sink_0, 0))
 
+
+    def get_filepath(self):
+        return self.filepath
+
+    def set_filepath(self, filepath):
+        self.filepath = filepath
+        self.blocks_wavfile_sink_0.open(self.filepath)
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -56,15 +75,15 @@ class untitled(gr.top_block):
 def argument_parser():
     parser = ArgumentParser()
     parser.add_argument(
-        "-r", "--samp-rate", dest="samp_rate", type=intx, default=48000,
-        help="Set Sample rate [default=%(default)r]")
+        "-p", "--filepath", dest="filepath", type=str, default='enter here /filepath/filename.wav',
+        help="Set /filepath/filename.wav [default=%(default)r]")
     return parser
 
 
-def main(top_block_cls=untitled, options=None):
+def main(top_block_cls=top_block, options=None):
     if options is None:
         options = argument_parser().parse_args()
-    tb = top_block_cls(samp_rate=options.samp_rate)
+    tb = top_block_cls(filepath=options.filepath)
 
     def sig_handler(sig=None, frame=None):
         tb.stop()
