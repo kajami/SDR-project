@@ -15,7 +15,6 @@ frames = []  # Initialize array to store frames
 date_time = datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
 filename = f"./recordings/recording-{date_time}.wav"
 
-print('Recording...')
 stream = p.open(format=sample_format,
                 channels=channels,
                 rate=fs,
@@ -24,11 +23,12 @@ stream = p.open(format=sample_format,
 
 # Store data until keyboard interrupt (ctrl + c)
 try:
+	print('Recording...\n(Press ctrl + c to stop recording)')
 	while True:
 		data = stream.read(chunk)
 		frames.append(data)
 except KeyboardInterrupt:
-	print("Finished recording")
+	print("\nFinished recording")
 except Exception as e:
 	print(str(e))
 
