@@ -24,7 +24,7 @@ from gnuradio import eng_notation
 
 class top_block(gr.top_block):
 
-    def __init__(self, filepath='enter here /filepath/filename.wav'):
+    def __init__(self, filepath='/home/minamina/recordings/filename.wav'):
         gr.top_block.__init__(self, "Top Block", catch_exceptions=True)
 
         ##################################################
@@ -75,8 +75,8 @@ class top_block(gr.top_block):
 def argument_parser():
     parser = ArgumentParser()
     parser.add_argument(
-        "-p", "--filepath", dest="filepath", type=str, default='enter here /filepath/filename.wav',
-        help="Set /filepath/filename.wav [default=%(default)r]")
+        "-p", "--filepath", dest="filepath", type=str, default='/home/minamina/recordings/filename.wav',
+        help="Set /home/minamina/recordings/filename.wav [default=%(default)r]")
     return parser
 
 

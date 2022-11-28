@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 12.0]
+    coordinate: [192, 12.0]
     rotation: 0
     state: true
 - name: audio_source_0
@@ -61,9 +61,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 172.0]
+    coordinate: [168, 172.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_wavfile_sink_0
   id: blocks_wavfile_sink
   parameters:
@@ -83,7 +83,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [656, 140.0]
+    coordinate: [408, 140.0]
     rotation: 0
     state: enabled
 - name: filepath
@@ -92,15 +92,15 @@ blocks:
     alias: ''
     comment: ''
     hide: none
-    label: /filepath/filename.wav
+    label: /home/minamina/recordings/filename.wav
     short_id: p
     type: str
-    value: enter here /filepath/filename.wav
+    value: /home/minamina/recordings/filename.wav
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 12.0]
+    coordinate: [304, 12.0]
     rotation: 0
     state: true
 
