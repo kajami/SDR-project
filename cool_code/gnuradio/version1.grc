@@ -77,7 +77,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 1e6
+    value: '1024000'
   states:
     bus_sink: false
     bus_source: false
@@ -104,7 +104,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 204.0]
+    coordinate: [920, 196.0]
     rotation: 0
     state: disabled
 - name: analog_wfm_rcv_0
@@ -140,7 +140,7 @@ blocks:
     bus_structure: null
     coordinate: [1344, 108.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_correctiq_auto_0
   id: blocks_correctiq_auto
   parameters:
@@ -157,7 +157,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 288.0]
+    coordinate: [288, 288.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -189,17 +189,17 @@ blocks:
     bits_per_sample3: FORMAT_VORBIS
     bits_per_sample4: FORMAT_PCM_16
     comment: ''
-    file: ''
+    file: ../gnuradio/grc.wav
     format: FORMAT_WAV
     nchan: '1'
-    samp_rate: samp_rate
+    samp_rate: '48000'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1336, 164.0]
+    coordinate: [1336, 172.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: low_pass_filter_0
   id: low_pass_filter
   parameters:
@@ -305,6 +305,35 @@ blocks:
     coordinate: [792, 396.0]
     rotation: 0
     state: true
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: freq_in_hz
+    fftsize: '1024'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '20'
+    showports: 'False'
+    showrf: 'True'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 516.0]
+    rotation: 0
+    state: disabled
 - name: qtgui_waterfall_sink_x_0
   id: qtgui_waterfall_sink_x
   parameters:
@@ -356,16 +385,16 @@ blocks:
     name: '""'
     nconnections: '1'
     showports: 'False'
-    type: float
+    type: complex
     update_time: '0.10'
     wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1176, 284.0]
+    coordinate: [536, 428.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -383,7 +412,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 204.0]
+    coordinate: [592, 204.0]
     rotation: 0
     state: true
 - name: soapy_hackrf_source_0
@@ -408,12 +437,33 @@ blocks:
     bus_structure: null
     coordinate: [56, 212.0]
     rotation: 0
+    state: disabled
+- name: soapy_rtlsdr_source_0
+  id: soapy_rtlsdr_source
+  parameters:
+    affinity: ''
+    agc: 'True'
+    alias: ''
+    center_freq: freq_in_hz
+    comment: ''
+    dev_args: ''
+    freq_correction: '0'
+    gain: '20'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 444.0]
+    rotation: 0
     state: true
 
 connections:
 - [analog_fm_demod_cf_0, '0', blocks_multiply_const_vxx_0, '0']
 - [analog_wfm_rcv_0, '0', blocks_multiply_const_vxx_0, '0']
-- [analog_wfm_rcv_0, '0', qtgui_waterfall_sink_x_0, '0']
 - [blocks_correctiq_auto_0, '0', rational_resampler_xxx_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_wavfile_sink_0, '0']
@@ -422,7 +472,10 @@ connections:
 - [rational_resampler_xxx_0, '0', low_pass_filter_0, '0']
 - [rational_resampler_xxx_0, '0', qtgui_freq_sink_x_0, '0']
 - [soapy_hackrf_source_0, '0', blocks_correctiq_auto_0, '0']
+- [soapy_hackrf_source_0, '0', qtgui_sink_x_0, '0']
+- [soapy_rtlsdr_source_0, '0', blocks_correctiq_auto_0, '0']
+- [soapy_rtlsdr_source_0, '0', qtgui_sink_x_0, '0']
+- [soapy_rtlsdr_source_0, '0', qtgui_waterfall_sink_x_0, '0']
 
 metadata:
   file_format: 1
-  grc_version: 3.10.4.0
