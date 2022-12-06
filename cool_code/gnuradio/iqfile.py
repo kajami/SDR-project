@@ -145,8 +145,8 @@ class iqfile(gr.top_block, Qt.QWidget):
                 10,
                 window.WIN_HAMMING,
                 6.76))
-        self.audio_sink_0 = audio.sink(12000, '', True)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 10e3, 1, 0, 0)
+        self.audio_sink_1 = audio.sink(12000, '', True)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 14e3, 1, 0, 0)
         self.analog_agc3_xx_0 = analog.agc3_cc(1e-3, 1e-4, 1.0, 1.0, 1)
         self.analog_agc3_xx_0.set_max_gain(65536)
 
@@ -160,11 +160,11 @@ class iqfile(gr.top_block, Qt.QWidget):
         self.connect((self.band_pass_filter_0, 0), (self.blocks_multiply_const_vxx_0, 0))
         self.connect((self.blocks_complex_to_mag_0, 0), (self.band_pass_filter_0, 0))
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_multiply_xx_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_1, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_wavfile_sink_0, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.blocks_wavfile_source_0, 1), (self.blocks_float_to_complex_0, 1))
         self.connect((self.blocks_wavfile_source_0, 0), (self.blocks_float_to_complex_0, 0))
+        self.connect((self.blocks_wavfile_source_0, 1), (self.blocks_float_to_complex_0, 1))
         self.connect((self.rational_resampler_xxx_0, 0), (self.analog_agc3_xx_0, 0))
 
 

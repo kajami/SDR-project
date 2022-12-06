@@ -74,7 +74,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: 10e3
+    freq: 14e3
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -103,7 +103,24 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1608, 116.0]
+    coordinate: [1592, 132.0]
+    rotation: 0
+    state: disabled
+- name: audio_sink_1
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: '12000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1608, 140.0]
     rotation: 0
     state: true
 - name: band_pass_filter_0
@@ -297,7 +314,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1376, 388.0]
+    coordinate: [1384, 444.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -329,6 +346,7 @@ connections:
 - [blocks_complex_to_mag_0, '0', band_pass_filter_0, '0']
 - [blocks_float_to_complex_0, '0', blocks_multiply_xx_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0, '0']
+- [blocks_multiply_const_vxx_0, '0', audio_sink_1, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_wavfile_sink_0, '0']
 - [blocks_multiply_xx_0, '0', rational_resampler_xxx_0, '0']
 - [blocks_wavfile_source_0, '0', blocks_float_to_complex_0, '0']
